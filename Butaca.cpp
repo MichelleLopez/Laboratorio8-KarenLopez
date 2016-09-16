@@ -1,10 +1,4 @@
-#pragma once
 #include "Butaca.h"
-#include <string>
-#include <sstream>
-
-using std::string;
-using std::stringstream;
 
 Butaca::Butaca(){
 	this->estado = true;
