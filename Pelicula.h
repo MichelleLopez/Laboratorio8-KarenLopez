@@ -22,7 +22,7 @@ public:
 	void setListaFunciones(Funcion*);
 	Funcion* getListaFunciones(int);
 	void mostrarFunciones();
-	bool elegirFuncion(int);
+	bool elegirFuncion(int, char, int);
 	string toString();
 	
 };

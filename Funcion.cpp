@@ -94,60 +94,76 @@ bool Funcion::seleccionarButaca(char fila, int columna){
 							cout<<"Butaca reservada correctamente";
 						}
 						else{
-							cout<<"Butaca reservada, por favor seleccione otra";
+							cout<<"Butaca reservada, por favor seleccione otra"<<endl;
+							flag = true;
 						}
+						break;
+
 					case 'B':
 					case 'b':
 						if (this->filaB.at(columna - 1)->butacaVacia()){
 							flag = true;
 							this->filaB.at(columna - 1)->ocuparButaca();
-							cout<<"Butaca reservada correctamente";
+							cout<<"Butaca reservada correctamente"<<endl;
 						}
 						else{
-							cout<<"Butaca reservada, por favor seleccione otra";
+							cout<<"Butaca reservada, por favor seleccione otra"<<endl;
+							flag = true;
 						}
+						break;
+
 					case 'C':
 					case 'c':
 						if (this->filaC.at(columna - 1)->butacaVacia()){
 							flag = true;
 							this->filaC.at(columna - 1)->ocuparButaca();
-							cout<<"Butaca reservada correctamente";
+							cout<<"Butaca reservada correctamente"<<endl;
 						}
 						else{
-							cout<<"Butaca reservada, por favor seleccione otra";
+							cout<<"Butaca reservada, por favor seleccione otra"<<endl;
+							flag = true;
 						}
+						break;
 					case 'D':
 					case 'd':
 
 						if (this->filaD.at(columna - 1)->butacaVacia()){
 							flag = true;
 							this->filaD.at(columna - 1)->ocuparButaca();
-							cout<<"Butaca reservada correctamente";
+							cout<<"Butaca reservada correctamente"<<endl;
+							break;
 						}
 						else{
-							cout<<"Butaca reservada, por favor seleccione otra";
+							cout<<"Butaca reservada, por favor seleccione otra"<<endl;
+							flag = true;
 						}
+						break;
 					case 'E':
 					case 'e':
 						if (this->filaE.at(columna - 1)->butacaVacia()){
 							flag = true;
 							this->filaE.at(columna - 1)->ocuparButaca();
-							cout<<"Butaca reservada correctamente";
+							cout<<"Butaca reservada correctamente"<<endl;
 						}
 						else{
-							cout<<"Butaca reservada, por favor seleccione otra";
+							cout<<"Butaca reservada, por favor seleccione otra"<<endl;
+							flag = true;
 						}
+						break;
+
 					default:
-						cout<<"Columna incorrecta, seleccione otra";
+						cout<<"Columna incorrecta, seleccione otra"<<endl;
+						flag = true;
+						break;
 				}
 			}
 			else{
-				cout<<"Fila incorrecta, seleccione otra";
+				cout<<"Fila incorrecta, seleccione otra"<<endl;
 			}
 		}
 	}
 	else{
-		cout<<"No hay cupo en esta funcion";
+		cout<<"No hay cupo en esta funcion"<<endl;
 	}
 	
 	return flag;
@@ -167,7 +183,7 @@ void Funcion::printButacas(){
 		d = d + filaD.at(i)->getMarca() + " ";
 		e = e + filaE.at(i)->getMarca() + " ";
 	}
-	cout<<"    1 2 3 4 5";	
+	cout<<"    1 2 3 4 5"<<endl;	
 	cout<<a<<" |"<<endl;
 	cout<<b<<" |"<<endl;
 	cout<<c<<" |"<<endl;
@@ -178,7 +194,6 @@ void Funcion::printButacas(){
 
 string Funcion::toString(){
 	stringstream ss;
-	cout<<"Sala\tHora Inicio\t Hora Fin\t Fecha\n";
-	ss<<sala<<"\t"<<this->horaI<<":"<<minI<<"\t"<<this->horaF<<":"<<minF<<"\t"<<dia<<"/"<<mes<<"/"<<anio;
+	ss<<sala<<"\t"<<this->horaI<<":"<<minI<<"\t\t"<<this->horaF<<":"<<minF<<"\t\t"<<dia<<"/"<<mes<<"/"<<anio;
 	return ss.str();
 }
