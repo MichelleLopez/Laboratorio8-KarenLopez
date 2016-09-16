@@ -4,10 +4,9 @@
 #include <string>
 #include <vector>
 using namespace std;
-using std::vector;
-using std::string;
 
-Funcion::Funcion(int sala, int horaI, int horaF, int minI, int minF, int anio, int mes, int dia){
+
+Funcion::Funcion(int sala, int horaI, int minI, int horaF, int minF, int anio, int mes, int dia){
 	this->sala = sala;
 	this->horaI = horaI;
 	this->horaF = horaF;
