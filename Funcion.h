@@ -37,7 +37,7 @@ public:
 
 	bool hayCupo();
 	void printButacas();
-	bool seleccionarButaca();
+	bool seleccionarButaca(char, int);
 	string toString();
 
 };
