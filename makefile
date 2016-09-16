@@ -4,7 +4,8 @@ main:	main.o Funcion.o Butaca.o
 main.o:	main.cpp Funcion.h Butaca.h
 	g++ -c main.cpp 
 
-Funcion.o:	Funcion.cpp Funcion.h Butaca.h	
+Funcion.o:	Funcion.cpp Funcion.h Butaca.h
+	g++ -c Funcion.cpp	
 
 Butaca.o:	Butaca.cpp Butaca.h
 	g++ -c Butaca.cpp

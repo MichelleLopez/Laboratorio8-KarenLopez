@@ -51,7 +51,7 @@ int Funcion::getDia(){
 	return this->dia;
 }
 
-void hayCupo(){
+bool Funcion::hayCupo(){
 	bool flag = false;
 	for (int i = 0; i < 5; ++i)
 	{
@@ -79,64 +79,71 @@ void hayCupo(){
 	return flag;
 }
 
-void seleccionarButaca(char fila, int columna){
+bool Funcion::seleccionarButaca(char fila, int columna){
 	bool flag = false;
 	if (this->hayCupo())
 	{
 		while(!flag){
 			if (columna >=1 && columna <=5)
 			{
-				switch fila
-				case 'A', 'a':
-					if (this->filaA.at(columna - 1)->butacaVacia()){
-						flag = true;
-						this->filaA.at(columna - 1)->ocuparButaca();
-						cout<<"Butaca reservada correctamente";
-					}
-					else{
-						cout<<"Butaca reservada, por favor seleccione otra";
-					}
-				case 'B', 'b':
-					if (this->filaB.at(columna - 1)->butacaVacia()){
-						flag = true;
-						this->filaB.at(columna - 1)->ocuparButaca();
-						cout<<"Butaca reservada correctamente";
-					}
-					else{
-						cout<<"Butaca reservada, por favor seleccione otra";
-					}
-				case 'C', 'c':
-					if (this->filaC.at(columna - 1)->butacaVacia()){
-						flag = true;
-						this->filaC.at(columna - 1)->ocuparButaca();
-						cout<<"Butaca reservada correctamente";
-					}
-					else{
-						cout<<"Butaca reservada, por favor seleccione otra";
-					}
-				case 'D', 'd':
-					if (this->filaD.at(columna - 1)->butacaVacia()){
-						flag = true;
-						this->filaD.at(columna - 1)->ocuparButaca();
-						cout<<"Butaca reservada correctamente";
-					}
-					else{
-						cout<<"Butaca reservada, por favor seleccione otra";
-					}
-				case 'E', 'e':
-					if (this->filaE.at(columna - 1)->butacaVacia()){
-						flag = true;
-						this->filaE.at(columna - 1)->ocuparButaca();
-						cout<<"Butaca reservada correctamente";
-					}
-					else{
-						cout<<"Butaca reservada, por favor seleccione otra";
-					}
-				default:
-					cout<<"Columna incorrecta, seleccione otra";
+				switch(fila){
+					case 'A':
+					case 'a':
+						if (this->filaA.at(columna - 1)->butacaVacia()){
+							flag = true;
+							this->filaA.at(columna - 1)->ocuparButaca();
+							cout<<"Butaca reservada correctamente";
+						}
+						else{
+							cout<<"Butaca reservada, por favor seleccione otra";
+						}
+					case 'B':
+					case 'b':
+						if (this->filaB.at(columna - 1)->butacaVacia()){
+							flag = true;
+							this->filaB.at(columna - 1)->ocuparButaca();
+							cout<<"Butaca reservada correctamente";
+						}
+						else{
+							cout<<"Butaca reservada, por favor seleccione otra";
+						}
+					case 'C':
+					case 'c':
+						if (this->filaC.at(columna - 1)->butacaVacia()){
+							flag = true;
+							this->filaC.at(columna - 1)->ocuparButaca();
+							cout<<"Butaca reservada correctamente";
+						}
+						else{
+							cout<<"Butaca reservada, por favor seleccione otra";
+						}
+					case 'D':
+					case 'd':
+
+						if (this->filaD.at(columna - 1)->butacaVacia()){
+							flag = true;
+							this->filaD.at(columna - 1)->ocuparButaca();
+							cout<<"Butaca reservada correctamente";
+						}
+						else{
+							cout<<"Butaca reservada, por favor seleccione otra";
+						}
+					case 'E':
+					case 'e':
+						if (this->filaE.at(columna - 1)->butacaVacia()){
+							flag = true;
+							this->filaE.at(columna - 1)->ocuparButaca();
+							cout<<"Butaca reservada correctamente";
+						}
+						else{
+							cout<<"Butaca reservada, por favor seleccione otra";
+						}
+					default:
+						cout<<"Columna incorrecta, seleccione otra";
+				}
 			}
 			else{
-				cout<<"Fila incorrecta, seleccione otra"
+				cout<<"Fila incorrecta, seleccione otra";
 			}
 		}
 	}
