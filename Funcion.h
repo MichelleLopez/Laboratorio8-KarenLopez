@@ -24,9 +24,11 @@ public:
 	void setSala(int);
 	void setHoraI(int);
 	void setHoraF(int);
-	void setAnio(string);
-	void setMes(string);
-	void setDia(string);
+	void setAnio(int);
+	void setMes(int);
+	void setDia(int);
+	void setMinI(int);
+	void setMinF(int);
 
 	int getSala();
 	int getHoraI();

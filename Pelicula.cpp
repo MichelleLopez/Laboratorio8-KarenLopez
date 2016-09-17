@@ -16,7 +16,7 @@ Pelicula::Pelicula(string name){
 	this->listaFunciones.push_back(new Funcion(1, 13, 30, 15, 30, 2016, 8, 15));
 }
 
-void Pelicula::setName(string){
+void Pelicula::setName(string name){
 	this->name = name;
 }
 
@@ -26,6 +26,9 @@ string Pelicula::getName(){
 
 void Pelicula::setListaFunciones(Funcion* funcion){
 	this->listaFunciones.push_back(funcion);
+}
+void Pelicula::eraseFuncion(int posicion){
+	this->listaFunciones.erase(listaFunciones.begin()+posicion);
 }
 
 Funcion* Pelicula::getListaFunciones(int i){

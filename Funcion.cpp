@@ -31,25 +31,52 @@ Funcion::~Funcion(){}
 int Funcion::getSala(){
 	return this->sala;
 }
-
+void Funcion::setSala(int sala){
+	this->sala = sala;
+}
 int Funcion::getHoraI(){
 	return this->horaI;
+}
+void Funcion::setHoraI(int horaI){
+	this->horaI = horaI;
+}
+
+void Funcion::setMinI(int minI){
+	this->minI = minI;
 }
 
 int Funcion::getHoraF(){
 	return this->horaF;
 }
+void Funcion::setMinF(int minF){
+	this->minF = minF;
+}
+void Funcion::setHoraF(int horaF){
+	this->horaF = horaF;
+}
 
 int Funcion::getAnio(){
 	return this->anio;
 }
+
+void Funcion::setAnio(int anio){
+	this->anio = anio;
+}
 int Funcion::getMes(){
 	return this->mes;
 }
+
+void Funcion::setMes(int mes){
+	this->mes = mes;
+}
+
 int Funcion::getDia(){
 	return this->dia;
 }
 
+void Funcion::setDia(int dia){
+	this->dia = dia;
+}
 bool Funcion::hayCupo(){
 	bool flag = false;
 	for (int i = 0; i < 5; ++i)
