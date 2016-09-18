@@ -13,7 +13,7 @@ Pelicula::~Pelicula(){}
 
 Pelicula::Pelicula(string name){
 	this->name = name;
-	this->listaFunciones.push_back(new Funcion(1, 13, 30, 15, 30, 2016, 8, 15));
+	this->listaFunciones.push_back(new Funcion(1, 13, 30, 15, 30));
 }
 
 void Pelicula::setName(string name){
@@ -36,11 +36,19 @@ Funcion* Pelicula::getListaFunciones(int i){
 }
 
 void Pelicula::mostrarFunciones(){
-	cout<<"Opcion\tSala\tHora Inicio\t Hora Fin\t Fecha\n";
+	cout<<"Opcion\tSala\tHora Inicio\t Hora Fin\n";
 	for (int i = 0; i < this->listaFunciones.size(); ++i)
 	{
 		cout<<i+1<<"\t"<<this->listaFunciones.at(i)->toString()<<endl;
 	}
+}
+
+bool Pelicula::hayFuncion(){
+	if (this->listaFunciones.size() == 0)
+	 {
+	 	return false;
+	 } 
+	 return true;
 }
 
 bool Pelicula::elegirFuncion(int opcion, char fila, int columna){

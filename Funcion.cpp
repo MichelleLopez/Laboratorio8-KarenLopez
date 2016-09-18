@@ -6,13 +6,11 @@
 using namespace std;
 
 
-Funcion::Funcion(int sala, int horaI, int minI, int horaF, int minF, int anio, int mes, int dia){
+Funcion::Funcion(int sala, int horaI, int minI, int horaF, int minF){
 	this->sala = sala;
 	this->horaI = horaI;
 	this->horaF = horaF;
-	this->anio = anio;
-	this->mes = mes;
-	this->dia = dia;
+
 
 	for (int i = 0; i < 5; ++i)
 	{
@@ -55,28 +53,6 @@ void Funcion::setHoraF(int horaF){
 	this->horaF = horaF;
 }
 
-int Funcion::getAnio(){
-	return this->anio;
-}
-
-void Funcion::setAnio(int anio){
-	this->anio = anio;
-}
-int Funcion::getMes(){
-	return this->mes;
-}
-
-void Funcion::setMes(int mes){
-	this->mes = mes;
-}
-
-int Funcion::getDia(){
-	return this->dia;
-}
-
-void Funcion::setDia(int dia){
-	this->dia = dia;
-}
 bool Funcion::hayCupo(){
 	bool flag = false;
 	for (int i = 0; i < 5; ++i)
@@ -118,7 +94,7 @@ bool Funcion::seleccionarButaca(char fila, int columna){
 						if (this->filaA.at(columna - 1)->butacaVacia()){
 							flag = true;
 							this->filaA.at(columna - 1)->ocuparButaca();
-							cout<<"Butaca reservada correctamente";
+							cout<<"Butaca reservada correctamente"<<endl;
 						}
 						else{
 							cout<<"Butaca reservada, por favor seleccione otra"<<endl;
@@ -179,13 +155,15 @@ bool Funcion::seleccionarButaca(char fila, int columna){
 						break;
 
 					default:
-						cout<<"Columna incorrecta, seleccione otra"<<endl;
+						cout<<"Fila incorrecta, seleccione otra"<<endl;
 						flag = true;
 						break;
 				}
 			}
 			else{
-				cout<<"Fila incorrecta, seleccione otra"<<endl;
+				cout<<"Columna incorrecta, seleccione otra"<<endl;
+				flag = true;
+				break;
 			}
 		}
 	}
@@ -221,6 +199,26 @@ void Funcion::printButacas(){
 
 string Funcion::toString(){
 	stringstream ss;
-	ss<<sala<<"\t"<<this->horaI<<":"<<minI<<"\t\t"<<this->horaF<<":"<<minF<<"\t\t"<<dia<<"/"<<mes<<"/"<<anio;
+	char cero1 = ' ';
+	char cero2 = ' ';
+	char cero3 = ' ';
+	char cero4 = ' ';
+	if (horaI < 10)
+	{
+		cero1 = '0';
+	}
+	if (horaF < 10)
+	{
+		cero2 = '0';
+	}
+	if (minI < 10)
+	{
+		cero3 = '0';
+	}
+	if (minF < 10)
+	{
+		cero4 = '0';
+	}
+	ss<<sala<<"\t"<<cero1<<this->horaI<<":"<<cero3<<minI<<"\t\t"<<cero2<<this->horaF<<":"<<cero3<<minF;
 	return ss.str();
 }

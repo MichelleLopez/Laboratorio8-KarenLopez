@@ -7,12 +7,13 @@
 #include <iostream>
 using namespace std;
 using std::string;
+bool validarInt(int);
 
 int main(int argc, char const *argv[])
 {
 	int opcion = 0, opcion2 = 0;
 	vector<Pelicula*> listaPeliculas;
-
+	int cont = 0;
 	listaPeliculas.push_back(new Pelicula("Interstellar"));
 	listaPeliculas.push_back(new Pelicula("American Story X"));
 	listaPeliculas.push_back(new Pelicula("Into the Wild"));
@@ -25,6 +26,13 @@ int main(int argc, char const *argv[])
 		cout<<"3. Vender un boleto"<<endl;
 		cout<<"4. Salir"<<endl;
 		cin>>opcion;
+		
+		if (cin.fail())
+		{
+			opcion = 0;
+			cin.clear();
+			cin.ignore(1024, '\n');
+		}
 		string name;
 		int pelicula = 0, funcion = 0, columna = 0;
 		Funcion* tempFuncion;
@@ -39,39 +47,64 @@ int main(int argc, char const *argv[])
 					cout<<"3. Borrar Película"<<endl;
 					cout<<"4. Regresar"<<endl;
 					cin>>opcion2;
+					if (cin.fail())
+					{
+						opcion2 = 0;
+						cin.clear();
+						cin.ignore(1024, '\n');
+					}
 
 					switch(opcion2){
 						case 1:
 							cout<<"Ingrese el nombre de la Pelicula: ";
-							cin>>name;
+							getline(cin, name, '\n');
+							getline(cin, name, '\n');
 							listaPeliculas.push_back(new Pelicula(name));
 							cout<<endl<<"Pelicula agregada correctamente"<<endl;
 							break;
 
 						case 2:
-							cout<<"¿Qué película desea modificar?"<<endl;
-							for (int i = 0; i < listaPeliculas.size(); ++i)
+							if (listaPeliculas.size() == 0)
 							{
-								cout<<i+1<<". "<<listaPeliculas.at(i)->getName()<<endl;
+								cout<<"No hay peliculas";
 							}
-							cin>>pelicula;
-							cout<<"Escriba el nuevo nombre: ";
-							cin>>name;
-							listaPeliculas.at(pelicula - 1)->setName(name);
-							cout<<"\nModificado correctamente"<<endl<<listaPeliculas.at(pelicula - 1)->getName();
+							else{
+								cout<<"¿Qué película desea modificar?"<<endl;
+								for (int i = 0; i < listaPeliculas.size(); ++i)
+								{
+									cout<<i+1<<". "<<listaPeliculas.at(i)->getName()<<endl;
+								}
+								cin>>pelicula;
+
+								cout<<"Escriba el nuevo nombre: ";
+								getline(cin, name, '\n');
+								getline(cin, name, '\n');
+								listaPeliculas.at(pelicula - 1)->setName(name);
+								cout<<"\nModificado correctamente"<<endl<<listaPeliculas.at(pelicula - 1)->getName();
+							}
 							break;
 						case 3: 
-							cout<<"¿Qué película desea borrar?"<<endl;
-							for (int i = 0; i < listaPeliculas.size(); ++i)
+							if (listaPeliculas.size() == 0)
 							{
-								cout<<i+1<<". "<<listaPeliculas.at(i)->getName()<<endl;
+								cout<<"No hay peliculas";
 							}
-							cin>>pelicula;
-							listaPeliculas.erase(listaPeliculas.begin() + pelicula - 1);
-							cout<<"Pelicula borrada con éxito"<<endl;
+							else{
+								cout<<"¿Qué película desea borrar?"<<endl;
+								for (int i = 0; i < listaPeliculas.size(); ++i)
+								{
+									cout<<i+1<<". "<<listaPeliculas.at(i)->getName()<<endl;
+								}
+								cin>>pelicula;
+								
+								listaPeliculas.erase(listaPeliculas.begin() + pelicula - 1);
+								cout<<"Pelicula borrada con éxito"<<endl;
+							}
 							break;
+						case 4:
+						break;
 						default: 
 							cout<<"Opción incorrecta"<<endl;
+							break;
 						}
 				}while(opcion2 !=4);
 				break;
@@ -84,6 +117,12 @@ int main(int argc, char const *argv[])
 					cout<<"3. Borrar una función"<<endl;
 					cout<<"4. Regresar"<<endl;
 					cin>>opcion2;
+					if (cin.fail())
+					{
+						opcion2 = 0;
+						cin.clear();
+						cin.ignore(1024, '\n');
+					}
 					switch(opcion2){
 						case 1:
 							cout<<"¿A qué película desea agregar la función?"<<endl;
@@ -97,22 +136,16 @@ int main(int argc, char const *argv[])
 							cin>>funcion;
 							cout<<"Ingrese el número de sala: ";
 							cin>>sala;
-							cout<<"Ingrese la hora inicio : ";
+							cout<<"Ingrese la hora inicio (0-23): ";
 							cin>>horaI;
-							cout<<"Ingrese los minutos: ";
+							cout<<"Ingrese los minutos (0-59): ";
 							cin>>minI;
-							cout<<"Ingrese la hora de finalización: ";
+							cout<<"Ingrese la hora de finalización (0-23): ";
 							cin>>horaF;
-							cout<<"Ingrese los minutos: ";
+							cout<<"Ingrese los minutos: (0-59)";
 							cin>>minF;
-							cout<<"Ingrese el anio: ";
-							cin>>anio;
-							cout<<"Ingrese el mes: ";
-							cin>>mes;
-							cout<<"Ingrese el día: ";
-							cin>>dia;
 							
-							tempFuncion = new Funcion(sala, horaI, minI, horaF, minF, anio, mes, dia);
+							tempFuncion = new Funcion(sala, horaI, minI, horaF, minF);
 							listaPeliculas.at(pelicula - 1)->setListaFunciones(tempFuncion);
 							break;
 						case 2:
@@ -141,16 +174,6 @@ int main(int argc, char const *argv[])
 							cout<<"Ingrese los minutos: ";
 							cin>>minF;
 							tempFuncion->setMinF(minF);
-							cout<<"Ingrese el anio: ";
-							cin>>anio;
-							tempFuncion->setAnio(anio);
-							cout<<"Ingrese el mes: ";
-							cin>>mes;
-							tempFuncion->setMes(mes);
-							cout<<"Ingrese el día: ";
-							cin>>dia;
-							tempFuncion->setDia(dia);
-							cout<<"\nModificado Correctamente"<<endl;
 							break;
 
 						case 3: 
@@ -167,7 +190,7 @@ int main(int argc, char const *argv[])
 							cout<<"Borrado correctamente";
 							break;	
 						default: 
-						cout<<"Opción incorrecta";
+						cout<<"Opción incorrecta"<<endl;
 						break;
 
 					}
@@ -176,26 +199,46 @@ int main(int argc, char const *argv[])
 			
 			case 3:
 				cout<<"****************Venta de Boletos*****************"<<endl;
-				cout<<"Seleccione la pelicula: "<<endl;
-				for (int i = 0; i < listaPeliculas.size(); ++i)
+				if (listaPeliculas.size() == 0)
 				{
-					cout<<i+1<<". "<<listaPeliculas.at(i)->getName()<<endl;
+					cout<<"No hay peliculas"<<endl;
 				}
-				cin>>pelicula;
-				cout<<"Seleccione la función: "<<endl;
-				listaPeliculas.at(pelicula - 1)->mostrarFunciones();
-				cin>>funcion;
-				listaPeliculas.at(pelicula - 1)->getListaFunciones(funcion - 1)->printButacas();
-				cout<<"\n Escriba la letra de fila: ";
-				cin>>fila;
-				cout<<"\n Escriba el numero de columna: ";
-				cin>>columna;
-				listaPeliculas.at(pelicula - 1)->elegirFuncion(funcion, fila, columna);
+				else{
+					cout<<"Seleccione la pelicula: "<<endl;
+					for (int i = 0; i < listaPeliculas.size(); ++i)
+					{
+						cout<<i+1<<". "<<listaPeliculas.at(i)->getName()<<endl;
+					}
+					cin>>pelicula;
+
+					if (listaPeliculas.at(pelicula - 1)->hayFuncion())
+					{
+						cout<<"Seleccione la función: "<<endl;
+						listaPeliculas.at(pelicula - 1)->mostrarFunciones();
+						cin>>funcion;
+						if (listaPeliculas.at(pelicula - 1)->getListaFunciones(funcion - 1)->hayCupo())
+						{
+							listaPeliculas.at(pelicula - 1)->getListaFunciones(funcion - 1)->printButacas();
+							cout<<"\n Escriba la letra de fila: ";
+							cin>>fila;
+							cout<<"\n Escriba el numero de columna: ";
+							cin>>columna;
+							listaPeliculas.at(pelicula - 1)->elegirFuncion(funcion, fila, columna);
+						}else{
+							cout<<"No hay cupo en esta funcion"<<endl;
+						}
+					}else{
+						cout<<"No hay funciones para esa pelicula"<<endl;
+					}	
+				}
 				break;	
+			case 4:
+				break;
 			default: 
-				cout<<"Opción incorrecta";
-				break;			
+				cout<<"Opción incorrecta"<<endl;
+				break;		
 		}
+
 	}while(opcion !=4);
 	return 0;
 }

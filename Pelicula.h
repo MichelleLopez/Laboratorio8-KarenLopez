@@ -24,6 +24,7 @@ public:
 	Funcion* getListaFunciones(int);
 	void mostrarFunciones();
 	bool elegirFuncion(int, char, int);
+	bool hayFuncion();
 	string toString();
 	
 };
